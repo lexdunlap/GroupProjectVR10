@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -7,10 +8,15 @@ using UnityEngine.EventSystems;
 public class ButtonManager : MonoBehaviour {
 
     public GameObject Character;
-    public Button ForwardButton;
+    public GameObject[] ButtonArray;
+    public GameObject ButtonPrefab;
+    public GameObject canvas;
 
-	// Use this for initialization
-	void Start () {
+
+    private StringBuilder ButtonString;
+
+    // Use this for initialization
+    static void Start () {
 		
 	}
 	
@@ -18,4 +24,13 @@ public class ButtonManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void CreateButton(string action, Collider other)
+    {
+        int yOffset = ButtonArray.Length * 30;
+        ButtonString.Append(action);
+        ButtonString.Append(" ");
+        ButtonString.Append(other.tag);
+        GameObject newButton = Instantiate(ButtonPrefab) as GameObject;
+    }
 }
